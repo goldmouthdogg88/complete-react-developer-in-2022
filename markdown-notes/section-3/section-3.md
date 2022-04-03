@@ -142,7 +142,21 @@ Complete React Developer in 2022 (w/ Redux, Hooks, GraphQL)
 </cite></figcaption>
 </figure>
 
-So what we're going to do is just convert this into a class component.
+## So what we're going to do is just convert this into a class component.
+
+```js
+import { Component } from "react";
+```
+
+{ Component } is a class that React gives to us. It allows all the components that we write in a class component format to get access to some of the functionality that by default React has already built for us inside this component class.
+
+We are passing the return statement to render(). Inside of the return is going to be the JSX we want to give back.
+
+In the next video, we're going to learn about some additional things that we can do that we can jump
+
+in and modify both what we're rendering and how we want things to be re rendered.
+
+And that will really help us be able to actually begin to modify our website to be more like an app.
 
 ## 27. Monsters Rolodex - Component State
 
