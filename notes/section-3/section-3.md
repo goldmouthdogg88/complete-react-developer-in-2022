@@ -24,6 +24,20 @@
 
 ## 20. Create React App - NPX
 
+[monsters rolodex](https://zhangmyihua.github.io/monsters-rolodex/)
+
+We'll learn how to create a react app without the tool create-react-app
+
+<div class="end-of-section">
+    <br />
+    <br />
+    <br />
+    <p>---------------------------------------------------------------------------------------------------------------------------</p>
+    <br />
+    <br />
+    <br />
+</div>
+
 ## 21. Create React App - React-Scripts 1
 
 ## 22. Create React App - React-Scripts 2
