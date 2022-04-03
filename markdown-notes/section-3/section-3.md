@@ -40,6 +40,33 @@ We'll learn how to create a react app without the tool create-react-app
 
 ## 21. Create React App - React-Scripts 1
 
+We're going to look at all the files and folder, create-react-app created for us.
+
+```json
+...
+
+ "dependencies": {
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "5.0.0",
+    "web-vitals": "^2.1.4"
+  }
+...
+
+
+
+```
+
+We have some libraries pre install for testing
+
+React scripts is a package helper, to make our lives easier when developing a react application.
+
+start: Takes all of the files written for our application and run it.
+taking all the files in /src and building out the actual React application.
+
 ## 22. Create React App - React-Scripts 2
 
 ## 23. Create React App - Everything Else
@@ -48,7 +75,44 @@ We'll learn how to create a react app without the tool create-react-app
 
 ## 25. Hooks vs Classes
 
+Classes - general purpose
+Hooks - React specific
+
 ## 26. Monsters Rolodex - Class Components
+
+And this concept is the idea of rendering, in my opinion, what makes a great react developer from
+
+a good react developer is a great react.
+
+Developer really understands when React is rendering and re rendering your website.
+
+This is one of the most core and essential things to understand with React, because that's really all
+
+reacts.
+
+We either going to write React with class components or functional components with hooks.
+
+How you tell React how to render and re-render your website. Understand how react renders and re-renders your website. its all React really does as a framework.
+
+This website was loading and waiting for react to render somthing onto the page.
+
+What happened was that this page was rendered, putting some UI HTML,CSS,js onto the page that a user can interact with. Something is done rendering when a user can interact with it.
+
+JSX makes it easier to tell our JS code what we want it to visually render to the page.
+
+Again this has to do with the rendering.
+
+Writing a functional component is one way to render something to the page.
+
+Another way is using a class component.
+
+We are going to start with class components
+
+it allows us to tell React what we expect, react what to render but **how** to render.
+We want to start with class components over functional components because,
+A class component is easier to understand when React will render and re-render things. and I'm going to show you how.
+
+So what we're going to do is just convert this into a class component.
 
 ## 27. Monsters Rolodex - Component State
 
