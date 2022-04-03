@@ -116,7 +116,7 @@ in 2010, Angela J.S., which was created by Google, really became the standard wa
 
 this way.
 
-Now, unlike Jacqui, Angular allowed developers to build these large applications by forming these
+Now, unlike JQuery, Angular allowed developers to build these large applications by forming these
 
 containers that well wrapped your project, and because it was created by Google, it had a lot of power
 
