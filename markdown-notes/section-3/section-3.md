@@ -1,3 +1,24 @@
+<style>
+    blockquote {
+    margin: 0;
+}
+
+blockquote p {
+    padding: 15px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+blockquote p::before {
+    content: '\201C';
+}
+
+blockquote p::after {
+    content: '\201D';
+}
+
+</style>
+
 # Section 3: React Basics
 
 ## 14. Section Overview
@@ -111,6 +132,15 @@ We are going to start with class components
 it allows us to tell React what we expect, react what to render but **how** to render.
 We want to start with class components over functional components because,
 A class component is easier to understand when React will render and re-render things. and I'm going to show you how.
+
+<figure>
+    <blockquote cite="https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554050#overview">
+        <p>and I'm going to show you how.</p>
+    </blockquote>
+    <figcaption>—Yihua M. Zhang, <cite>
+Complete React Developer in 2022 (w/ Redux, Hooks, GraphQL)
+</cite></figcaption>
+</figure>
 
 So what we're going to do is just convert this into a class component.
 
