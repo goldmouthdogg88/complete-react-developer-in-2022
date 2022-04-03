@@ -7,10 +7,10 @@ https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.ht
 
 ## Instuctors
 
-<pre>
+
 :camera: instagram: andreineagoie
 :bird: twitter: andreineagoie
-</pre>
+
 coding challenges: https://zerotomastery.io/community/coding-challenges/
 
 
