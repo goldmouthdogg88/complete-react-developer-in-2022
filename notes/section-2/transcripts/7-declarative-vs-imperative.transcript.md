@@ -1,5 +1,4 @@
 Now the success of React comes down to four key things.
-
 And these React concepts are we going to go over in the next four videos.
 
 But in this one let's talk about the first one and the first one React says: hey don't touch the DOM
@@ -20,7 +19,7 @@ this Dom.
 
 That's all javascript is doing.
 
-For example if I right ==click== over here and select Inspect and you'll see that here if I click on
+For example if I right **click** over here and select Inspect and you'll see that here if I click on
 
 un vote we'll get a little flash saying that hey javascript just updated this.
 
@@ -147,4 +146,3 @@ is where the name React came from. The name React is simply saying hey based on 
 data of the app is that describes our app, I'm just going to React to it and change everything for you
 
 so that you get the display that you want.
-
