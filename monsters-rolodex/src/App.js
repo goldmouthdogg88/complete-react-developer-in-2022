@@ -9,6 +9,7 @@ class App extends Component {
 
     this.state = {
       monsters: [],
+      filteredMonsters: [],
     };
     console.log("constructor 1");
   }
@@ -44,11 +45,11 @@ class App extends Component {
               return monster.name.toLowerCase().includes(searchString);
             });
             this.setState(() => {
-              return { monsters: filteredMonsters };
+              return { filteredMonsters: filteredMonsters };
             });
           }}
         />
-        {this.state.monsters.map((monster) => {
+        {this.state.filteredMonsters.map((monster) => {
           return <h1 key={monster.id}>{monster.name}</h1>;
         })}
       </div>
