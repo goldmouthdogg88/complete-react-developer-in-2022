@@ -1554,6 +1554,214 @@ So I'll see you in the next video.
 
 ## 34. Monsters Rolodex - Single Page Applications (SPAs)
 
+
+
+Welcome back, everyone.
+
+In this lesson, we're going to talk about how to get arrays of information from somewhere that is not
+
+just hardcoded on our website.
+
+So let's think about applications for a second.
+
+Right now, this array is hardcoded on our React application.
+
+The only way that this code can be updated is if we update this directly using some JavaScript code
+
+as we saw or if we manually update it through typing.
+
+Almost all applications don't do this when it comes to any kind of dynamic information.
+
+This is dynamic because these values can change.
+
+We could get new users, we could get less users.
+
+You can imagine on Facebook they get millions of new users or users changing their data every single
+
+day.
+
+It would be completely unrealistic to have that all hardcoded inside of their recode.
+
+In fact, what they have to do is they have all of that user data living in a database somewhere and
+
+then whenever their application needs it, they will then ask that database for that information and
+
+then use it to populate their website.
+
+Right now, what we're doing is we are hard coding in the website.
+
+We're not actually calling it from any database.
+
+And that's what we want to change.
+
+But before we go into that, we need to talk a little bit about single page applications and why it
+
+is that a react application as a single page application makes this whole process way easier.
+
+So let's break down a little bit of how websites work before and after SBA's SBA stand for single page
+
+applications and use frameworks kind of like react and angular and view to help build them.
+
+So what we're building is a spa.
+
+Whenever we work with React now, there are, of course, some nuances.
+
+Once you start doing things like server side rendering or even static page rendering when you do things
+
+like Gatsby, which is a react framework for static pages.
+
+But as far as our application goes and this course with React, we're just focused on building our space.
+
+But before we understand space, we need to talk a little bit about the world before us space.
+
+So let's say you have a website.
+
+In this particular case, let's imagine you are navigating to zero to Mastery I o, which is our website,
+
+when you navigate there, what happens is that you actually need some code and in a non spa environment,
+
+your browser doesn't actually know how to build this website.
+
+So what it has to do, it has to ask for the code from some kind of server.
+
+Now the server is going to host all of the HTML, CSS and JavaScript required to build your entire website.
+
+So your browser is going to go, Oh, I need to access zero to mastery.
+
+I o what do I need?
+
+I need the home page.
+
+So you're going to make a request to the server and say, Can you give me the code for the home page?
+
+So the server is going to say, OK, send you back the required HMRC s s and JavaScript needed to build
+
+the home page and then your browser takes that and actually creates the UI and the page that the user
+
+is trying to access.
+
+Similarly, what happens if you try to navigate now to zero to mastery IO slash react?
+
+Well, this is a different page entirely.
+
+So the code that we had before for the home page, not all of it is relevant.
+
+So what again, what's going to happen is the browser is going to make another request to the same server
+
+and say, Hey, someone's trying to access the React page, can you give me the code for that?
+
+And the server says OK, and it will give off the required HTML, CSS and JavaScript files for the React
+
+page, which your browser then uses and builds that page.
+
+This is very familiar if you were using websites pre 2010.
+
+Nowadays, there's very few websites that kind of have this interaction, but you might remember before
+
+that there was a brief white page when you are navigating between pages on a website, which was when
+
+your browser was actually making a request on the network to a server and getting that code, which
+
+is why there was that white page, because essentially that's the time it takes for the network request
+
+to ask and then receive and then build the web page.
+
+Now, in an s.p.a environment, this is completely different.
+
+Similarly, you're still going to ask the browser, Hey, I want to access zero to mastery dial, so
+
+for the very first time, there will still be a request to the XHTML server because at this point,
+
+your browser doesn't have the code for XHTML.
+
+Oh, so it's going to make that request.
+
+The server and the server is going to send back the same thing, some html, some yes, and some JavaScript.
+
+But now remember, our web site is an ISP, meaning that it was built with react.
+
+So this JavaScript code actually contains the React code, as well as the React library and all the
+
+stuff that we wrote in order to build the website.
+
+So now what's going to happen is that our web site, our browser, is going to take that code, build
+
+out that home page.
+
+And now, just like before, everything here is the same.
+
+You have your home page, everything is built with the code that we got from the server.
+
+But now, when you navigate to XHTML, I'll slash react.
+
+We still have all of that JavaScript and REAC code and now react isn't need to go and ask the server
+
+for more code.
+
+Instead, using this real code, it itself is going to build the CFSAN HTML pages required for the React
+
+page.
+
+And this is the big difference.
+
+We no longer need to go to the server for the code whenever we navigate and change pages.
+
+Anything that you see on a web site that is an spa or built in react, what's happening is that components
+
+are getting stripped off.
+
+They're getting put on.
+
+They're getting created.
+
+They're getting destroyed.
+
+All those processes are happening live on the browser.
+
+Once we get that initial bundle of code that contains our React code and this is what makes react so
+
+powerful, because now we no longer have any more of those white pages and there's no more additional
+
+requests the server for page related code.
+
+This is not entirely true in the future once we start doing really, really customize optimizations.
+
+But for now and the majority of space, that's the main difference you need to think about.
+
+Any of those optimizations are further down the line way further down the line.
+
+You don't have to worry about that right now.
+
+Right now, all you need to know is that through nzrpa, we're able to get the entire bundle of our
+
+React code and our website code in one shot.
+
+So let's talk about what we are trying to do with our monstrous Rolodex.
+
+As I mentioned, we already are writing some of this code required to build the monster's Rolodex website.
+
+We don't really have any pages at this point.
+
+We have our home page, which is going to display all those monsters.
+
+And then we're going to really just sift through them using a search bar.
+
+But right now, we don't actually have all those monsters because we're just hard coding them.
+
+So what we need to do is we need to access those users from some kind of user API.
+
+We're going to ask an external API, which is going to give us back a list of those users that we will
+
+then use in order to build out the list so that code that we have hardcoded instead, we want to get
+
+that from an API somewhere.
+
+Not only do we have to get it from an API somewhere, we have to learn how to actually bring it into
+
+our React application so that we can use it.
+
+So that's what we're going to cover in the next video, and I'll see you there.
+
 ## 35. Monsters Rolodex - Lifecycle Method: componentDidMount
 
 ## 36. Optional: Promises
