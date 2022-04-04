@@ -2072,6 +2072,174 @@ See in the next video.
 
 ## 37. Monsters Rolodex - Renders & Re-renders in React
 
+Welcome back, everyone.
+
+So so far, we've learned quite a bit about class components.
+
+We've learned about their constructor call.
+
+We have learned about some of their lifecycle methods component amount specifically.
+
+And we've learned about the render.
+
+So you might be wondering what's the order that these actually get run when React decides to initialize
+
+and mount a component?
+
+So the order I'm going to tell you is that it runs the constructor first because the constructor runs
+
+before anything in any class.
+
+That is, regardless of whether this is React or JavaScript, classes will always run the constructor
+
+function first inside of here.
+
+The only thing you're really going to do with the constructor is initialize the state.
+
+So this is pretty much just saying, Hey, react, there's going to be a state object for this component,
+
+and this is the initial values that it's going to have.
+
+That's all you really need to ever use the constructor for.
+
+The render runs next, and what it does is the render determines what to show.
+
+This you can see kind of as the template of the HTML, so this dictates what the UI for this component
+
+is going to be.
+
+Then the next life cycle that runs is component did Mount, because what happens is that React is like,
+
+OK, I run the constructor of initialize the state, the initial state at the very least, and I am
+
+going to now render the initial UI of this component.
+
+So it's actually going to mount this initial UI onto the Dom.
+
+So what this means is that whatever the initial state of your component is, is what it will mount on.
+
+Then once it mounts, it will run.
+
+The lifecycle method component did mount because our component did just mount.
+
+The moment it mounts, it runs the code inside.
+
+And here we can easily see very quickly if I console log in each space.
+
+So this is one.
+
+This one with the render should be to.
+
+And then inside of this component at Mount, this should be three.
+
+So if we save this, we go back to our application.
+
+We see one two three and then you'll notice that two runs again.
+
+So why did this happen?
+
+Well, let's think about what just happened.
+
+Our constructor runs our stake.
+
+It's initialized, so console.log one yes, we know the constructor runs first, then the render runs
+
+console.log two.
+
+This is the second thing.
+
+The initial rendering and mounting of our component onto the page then component did mount three runs.
+
+And here we are fetching some JSON.
+
+And remember, this is asynchronous, so we actually don't know when this data is going to come back.
+
+Once it comes back, we are going to now update the state.
+
+But the moment that that state updates remember, I told you that the moment state changes and you've
+
+called set state.
+
+React knows, oh, this components different, I need to re render it re render here's the key word,
+
+meaning that we need to run the render again, because the moment you run the render method react is
+
+saying, Oh, let me render onto the page again with this template and inside of this template, the
+
+state dot monsters is now different because as we know, we've updated the state with the appropriate
+
+users, which is why you see the second two logged out.
+
+This is how React is going to work.
+
+Majority of the time with your components by looking at just the order of when the initial render happens
+
+and another render happens once that state gets called.
+
+You now understand pretty much the core of class components and rendering.
+
+This is like 80 percent of what you need to know about class components when it comes to understanding
+
+the rendering cycles.
+
+So the moment that's at stake, it's called the render method gets called again because once the state
+
+is up to date, we want to re render what this components UI is with any new values that may be there,
+
+which we know is probably going to be the case because the state object is different and the render
+
+is simply just going to look through this GSX and say, Oh, I need to look at state dot monsters.
+
+What's the monsters, whatever the new value is?
+
+This is the key thing of understanding, react and really just understanding with class components when
+
+something renders.
+
+And here we explicitly see step by step what that looks like.
+
+Run the constructor, run the initial render when your initial monster's value was an empty array.
+
+Then, once your component mounts fetch, the new users call that state and once again, once the state
+
+gets called Call Render Again and now Monsters is the new updated users list.
+
+This is pretty much the basic flow of rendering and re rendering when it comes to making these basic
+
+API requests.
+
+That's it with a bit more practice.
+
+This will become very familiar.
+
+But this flow, I just want you to understand that constructor runs first, initialize your state,
+
+render your initial component UI.
+
+Then once you need some API, calls to it in the component at Mount lifecycle.
+
+Once that happens, you want to set state to make sure that your component updates.
+
+And once it updates, it's going to call render again to re render the UI.
+
+That's the flow.
+
+We're going to dive deep into a lot more of these concepts, but now you understand very integrally.
+
+One of the hardest things for a lot of people when it comes to understanding react is when things really
+
+render.
+
+But now you've seen a very common flow you're going to encounter over and over again in your react life.
+
+You've understood some of these life cycles.
+
+So this is enough for us to get started with this component.
+
+So let's start actually making this look a little bit more similar to our website, and we'll do that
+
+in the next video.
+
 ## 38. Monsters Rolodex - Input Search Box Component
 
 ## 39. Monsters Rolodex - Searching & Filtering
