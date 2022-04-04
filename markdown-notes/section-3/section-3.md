@@ -672,6 +672,182 @@ So I'll see you there.
 
 ## 29. Monsters Rolodex - States and Shallow Merge
 
+In the last video, we learned about how a class component decides that it needs to render when the
+
+state is different, the way that it determines that the state is different is when it sees that the
+
+state object is now a different object in memory.
+
+And the way that we can best use this is to utilize the class components set state method that React
+
+has given us.
+
+As I mentioned in the last video, that state can take an object and it will in fact shallow merge this
+
+object into your current state and give you a new state object.
+
+But there's actually other things you can pass the said state, but we'll talk about that a little later.
+
+For now, I want to focus on the shall emerge, so we really understand what it does and then what the
+
+best practices for it are.
+
+So when you pass it, an object, as we saw with shallow merging, it will look for any keys that exist
+
+in the current state object, and we'll update them to the new one that we have in our case.
+
+We're updating name to Andre so we can actually see this if instead we do another value.
+
+Let's say company is equal to ZTM.
+
+And just to be clear, let's also render this to our UI, and I'll say hi.
+
+I work at.
+
+And then this Scott state company.
+
+So I haven't modified said state.
+
+We're still just updating the name.
+
+And if we go back to our application, if I hit change name, it says, Hi Andre.
+
+I work at XHTML.
+
+And just to be clear, let's also console.log this start state.
+
+And if I save this.
+
+Now, if I click this again, you'll see the first time that we click console.log our state objects
+
+skills as one company, but I'll break this down a little later as to why that's happening.
+
+And it's not what you expect, which is why is it not saying Andre if I click it again?
+
+Now it's Andre.
+
+So don't worry about this.
+
+For now, I'm going to talk about why this is happening a little later.
+
+But for now, what I want you to focus on is the fact that what happened with that shallow merge is
+
+that name did get updated to Andre.
+
+You'll see.
+
+Name is now Andre, but the company stays the same.
+
+So this again is a shall emerge.
+
+It only updates the keys for the values that are being passed to it.
+
+Anything else it keeps and it retains the same way.
+
+Now, one important consideration to make about the shallow merge is that there's actually a thing that
+
+yields a best practice when we do this, because with a shallow merge rack doesn't care what the value
+
+was before.
+
+All it cares about is that I see that the keys match.
+
+I'm going to update the value regardless of how complex the previous value was.
+
+What do I mean by this?
+
+Well, let's update names so that instead of a string, it says that it's an object that has a first
+
+name value as well as a last name value.
+
+And now inside of my string, let's also update this Star State name, first name, so that it's now
+
+referencing the new value that we have, which is an object.
+
+And I want to point to the first name as well as the last name.
+
+So now, if I save this and I go back to my application, we'll see that now it says, Hi Juzang, I
+
+work at XDR-TB.
+
+When I click change name again, we see that this was the previous value, so let's ignore this again.
+
+I'll talk about this in the next video.
+
+But let's say it again, you'll see what happens is that our state object got updated.
+
+So that name is Andre.
+
+But here we see that our app is not working, that we expect it to.
+
+It's not displaying Andre anymore.
+
+And this makes actually total sense because name is now just a string.
+
+It's not that object that we had before the first name, last name, complex object.
+
+And the reason why that this is not rendering is because when we look at our code, our code is looking
+
+for this dot state dot named Dot first name and this dot state dot named Dot last name.
+
+But of course, as we know, a string doesn't have a dot first name or a dot last name property.
+
+So now our code is breaking.
+
+But again, with a shallow merge rate doesn't care that this is a completely different shape or even
+
+in fact type, then what it was before, because now we got a string before as an object.
+
+RAC doesn't care.
+
+Let's say, Oh, you just want me to shallow merge this key of name value to replace the old one.
+
+I'm just going to do that.
+
+So this actually extends into a best practice so that our code doesn't behave in this weird way where
+
+it breaks.
+
+We want to make sure that when we update our state, we're always using the same types of values for
+
+our object properties.
+
+So if your name is going to be an object, make sure that you update it appropriately, like so.
+
+So that here first name is still Andre.
+
+And last name is Niagara.
+
+I hope I spot that right.
+
+So here now when I click change, name now works the way we expect it to.
+
+So this is an important thing to understand about using such state when you pass it and object.
+
+So now that we understand that state with an object, I'm actually going to in the next lesson, break
+
+down what the different way you can use that state is where you don't pass it an object, but instead
+
+you pass it a function.
+
+And with this function, it's actually the preferred way to do so.
+
+Not all the time, because you will see a lot of projects use such state where they pass it and object
+
+still.
+
+But as far as reax own suggestion goes, you should use the function and there are certain parts to
+
+it which I'll explain in the next video.
+
+Similarly, it's also going to explain why whenever we were logging our state object in our experiments,
+
+we see that the first time I do so, despite the fact that the value in the UI has updated, my console.log
+
+seems to be behind because the object still says firstname lastname of the previous value.
+
+So we're going to break that down in the next video, and I'll see you there.
+
 ## 30. Monster's Rolodex - setState and Secondary Callback
 
 ## 31. Monsters Rolodex - Mapping Arrays to Elements
