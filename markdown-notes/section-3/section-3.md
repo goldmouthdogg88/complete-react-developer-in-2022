@@ -1392,8 +1392,14 @@ And we're going to go into exactly what that means in the next video.
 I'll see you there.
 
 ## 32. Optional: Map() + key attribute
-
+::NO VIDEO::
 ## 33. Monsters Rolodex - Keys for Mapping
+
+
+
+
+
+
 
 ## 34. Monsters Rolodex - Single Page Applications (SPAs)
 
