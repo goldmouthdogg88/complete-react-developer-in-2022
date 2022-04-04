@@ -850,6 +850,289 @@ So we're going to break that down in the next video, and I'll see you there.
 
 ## 30. Monster's Rolodex - setState and Secondary Callback
 
+Welcome back, everyone.
+
+So I know we're spending a lot of time with such day, and you might be wondering if let's just build
+
+Monster's Rolodex.
+
+But I really think this forms a great, solid foundation moving forward of really understanding the
+
+code that you're writing and how reacts engine works at a high level.
+
+If we build the solid foundation of just understanding how through set state and state and this class
+
+component that react determines when to render or render a component, we really can very quickly understand
+
+all of the other nuances of components and react, as well as why something is working or not working
+
+and just the general flow of everything.
+
+Because as I mentioned with React, it's really just all about components and how and when they render
+
+or we render with such state.
+
+I showed you earlier that when we just passed the object, we do a shallow merge, which in turn React
+
+does do an update.
+
+But inside of this same function, so the same callback that we gave to on click.
+
+We also did a console.log dot this dot state.
+
+And yet, for some reason, once this console.log ran, we were seeing our old state object and not
+
+the new one.
+
+So just to clarify, when we refresh here, what we should begin with is high.
+
+Using this should be the initial state, which it is, as we see demonstrated in the UI.
+
+But I click change name UI updates to Andre Aniagwu.
+
+But for some reason, the console.log still shows the previous. Why is this?
+
+So this again actually has to do with the way that React does its re-render, which is where Re-rendered
+
+our component.
+
+However, with this set state call, what's happening here with the shallow merge is that this is actually
+
+happening asynchronously.
+
+So typically what JavaScript code code happens in asynchronous manner, meaning that it runs one by
+
+one by one by one.
+
+In this particular case, we're expecting that within our callback that we update the states and then
+
+we console.log this start state.
+
+But clearly, as we see this is getting run first.
+
+However, the state is not being updated when this console.log runs, meaning that the state at this
+
+point is still the previous one.
+
+Why is this is because React batches these different sets state calls so that it can determine what
+
+the most optimal strategy for re rendering the website is going to be.
+
+What do I mean by this?
+
+Well, let's say you imagine that you have an application where you have a lot of different components
+
+and perhaps through one interaction, one button click, you're actually updating the state in multiple
+
+components, not just this one, because inside of here, we have one component right now with one state,
+
+but you can imagine how in a more complex app, one interaction might update the state of multiple different
+
+components.
+
+In that case, React doesn't want to just completely isolate and do all those different updates independently.
+
+RAC wants to figure out if it can stack these together, or maybe there's a more optimal way of updating
+
+these components so that it is more performance.
+
+That's all what React is doing under the hood for us.
+
+So as a result, set state as a call is a non synchronous call.
+
+It's an asynchronous call, meaning that when consort log, which is asynchronous call, gets called
+
+at this point, the state might not be updated.
+
+It may or it may not be.
+
+Chances are it's not.
+
+So you might be wondering then?
+
+Well, with such state, then what if I want to use the latest state after I've updated it inside of
+
+my code?
+
+Somehow, like in our case, I want to console.log and make sure that my state is up to date.
+
+Now we can achieve this where instead of passing this object to such state, we can pass it a function.
+```js
+this.setState(() => {}, <callback>)
+```
+So in this format, there's actually a different way.
+
+So as I mentioned, we can pass it a function.
+
+And what we can also pass, it is a callback, so these are two different arguments that you can pass
+
+to set date.
+
+If you pass it like this, you'll actually be able to get a more consistent synchronous behavior.
+
+Not really, but just at least one where we anticipate what's going to happen.
+
+So let me break this down, so I'm going to comment this up.
+
+So this first function is a updater function.
+
+The first function that you passed a set state here is going to be some function where you return an
+
+object that it will then use to shallow merge against state.
+
+So this is kind of very similar to what we did before.
+
+When we just passed the object that we wanted to shall emerge again state as the argument to set state.
+
+But now instead, we're passing a function that returns.
+
+This object that we want to again shall emerge.
+
+So you might be wondering, what's the point of doing this additional function?
+
+Well, the reason why we do this is because within this function, we get access to state as well as
+
+props, props I'm going to cover later.
+
+```js
+
+onClick={() => {
+              this.setState((state, props) => {
+                return {
+                  name: {firstName: 'Andrei', lastName: 'Neaogie'},
+                }
+              }, () => {});
+              console.log(this.state);
+            }}
+
+```
+
+But state at this current moment, this state variable that we have access to is equal to the current
+
+state.
+
+And the reason why we want to use this is because sometimes we want to maybe update our state based
+
+on the previous value of the state.
+
+Props, on the other hand, is something that does with components.
+
+It's different values that you can pass to your component, and we're going to do a whole separate lesson
+
+on that and deeper understand it.
+
+For now, just understand that you don't really need it right now.
+
+But if you wanted to utilize props somehow inside of your state, you can do so.
+
+But again, don't worry about it.
+
+These are both optional, as you can see right here.
+
+I'm not even going to use it.
+
+I'm just going to use the return where I passed the object that I want to have.
+
+So let's just save this and see if it still works.
+
+So if we go back here, we see using a head change name.
+
+It's updated to Andre Nagwa.
+
+So just like we saw earlier, this is doing that same state update as we had before reactor's registering.
+
+Oh, it's a different object in memory.
+
+I can now re render, which we saw, but I mentioned earlier that we want to see the console.log show
+
+the correct value.
+
+Well, that's actually what this second argument is.
+
+This function that we wrote this callback.
+
+Again, as I mentioned, a callback is just a function that my code says, Oh, once I'm finished,
+
+I want you to run this callback.
+
+So here inside of this function, we can write whatever we want, and I'm just going to console.log
+
+the new states of the Star State and what happens here is that this console.log inside of this function,
+
+this function is going to run only after all of the state changes have been applied, meaning that only
+
+one react has determined in its asynchronous manner.
+
+Oh, I've updated shall emerge the state and now the state is the new object, then I'm going to run
+
+this callback function.
+
+So now if we save this and we go back now, if I hit change name, what we'll see is that we have the
+
+correct newly updated state.
+
+And this format is actually the ideal optimal way that you should be writing your set state code in
+
+class components.
+
+The reason for this is just because by doing this, it's much more clear what's happening.
+
+You don't have to use the previous state or the props values.
+
+As I mentioned, we're definitely not doing that here.
+
+But in this way, anyone looking at it just anticipates and understands what's going to happen.
+
+It's going to understand that, oh, this object, just like before, is just going to be the thing
+
+that gets shallow merged, but also that this follow up callback, if there is one, is going to run
+
+only after the state is fully updated, which makes it much easier to think about what's going to happen.
+
+You don't have to consider, Oh my God, at this current moment, is my code actually updated or not?
+
+You know for sure that React is handling that.
+
+The moment that the state is up to date is only when this callback is going to get run.
+
+Now again, this callback is also entirely optional.
+
+You don't have to pass it.
+
+You can just pass it this function if you don't want to run a callback after state updates.
+
+There's nothing wrong with that.
+
+If we refresh and we clear out our console, we change name.
+
+Our code still just works.
+
+So this is just a very key thing to understand, except state and how react determines when to update,
+
+when to batch things, to make it more performant.
+
+And also when to run after it's updated the state.
+
+And this is really all it is.
+
+I know there's a lot that we learned about such state and we're going to get a lot of practice.
+
+So don't worry, we're going to practice with it.
+
+We're going to get familiar with it so that as we build out Monster's Rolodex, it'll become like second
+
+nature to you about using set state.
+
+I know I talked a lot about that state and it's really boring and really technical, but now we can
+
+start using that state to actually build our monster's Rolodex application.
+
+And as promised, I'm also going to talk about props and how that gets involved as well.
+
+So in the next video, let's start building out our application.
+
+
+
 ## 31. Monsters Rolodex - Mapping Arrays to Elements
 
 ## 32. Optional: Map() + key attribute
