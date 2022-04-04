@@ -380,7 +380,295 @@ render information that represents the UI.
 
 So in the next video, let's cover how we can make this more dynamic.
 
+<div class="end-of-section">
+    <br />
+    <br />
+    <br />
+    <p>---------------------------------------------------------------------------------------------------------------------------</p>
+    <br />
+    <br />
+    <br />
+</div>
+
 ## 28. Monsters Rolodex - setState
+
+Welcome back, everyone.
+
+In the last video, we learn about initializing some local state inside of this component, which is
+
+an object that has key value pairs in it.
+
+And then how do we access that state object or any JavaScript able really inside of our JSX code?
+
+In this lesson, we're going to learn more about extending some JavaScript functionality into these
+
+components to do something much more dynamic and much more useful when it comes to building applications.
+
+So what we want to do is, let's say, I just wanted to click this button change name and then have
+
+it change from Yihua to Andrei.
+
+How do I do that?
+
+So inside of your JSX, React actually allows you to bind event handlers onto any HTML element.
+
+So what is an **event handler**?
+
+An Event handler is really just something that I want to happen whenever an event happens.
+
+So what this means for our button, for say, is every time this button is clicked, I want something
+
+to happen.
+
+So to do that, I have access to this on and then the name of the event in this particular case, I
+
+want on.
+
+Click.
+
+So whenever this gets clicked, I want some functionality to happen and the way that I can tell it,
+
+what functionality are to happen when I click it is, I say on Click is a property which is equal to
+
+a block of JavaScript, and we'll remember whenever I want to access JavaScript, whether it be a variable
+
+or even hardcoded in JavaScript, I use these curly braces.
+
+So here I'm saying Hey on click equals and then inside of here, what on click is expecting is a function.
+
+You may hear the word function or callback function used pretty interchangeably, a callback is just
+
+a function.
+
+You pass to some kind of handler that you wanted to call during some process.
+
+In this particular case, of course, I want it to be called whenever it gets clicked.
+
+So I'm passing it right now, this empty function, so nothing will happen.
+
+But what I want to do whenever this button is clicked again is change the name value to Andre instead
+
+of EÜ.
+
+Now you might think, Oh, let me just do this dot state dot name is equal to Andre.
+
+But this is actually not going to behave the way that we're expecting it to.
+
+In fact, let's also console log this start state just so that we're very clear about what's happening
+
+once we save this.
+
+So if we go back to our application, we hit this button change name no matter how many times we hit
+
+it.
+
+We see the EUA here is not updating to Andre, even though the object that gets logged out is the correct
+
+value we're expecting.
+
+We see that our object here name is now Andre.
+
+But why is it that inside our application, it's still using the previous value of EUA?
+
+Now this actually has to do with the way that react determines when a component needs to re, render
+
+and re rendering.
+
+In this case, as I mentioned, is when React decides, Oh, I need to update the DOM or repaint the
+
+UI.
+
+So let's break down why exactly it is that here this is not working the way that we want it to.
+
+This actually has to do with the fact that we're not actually changing the object in a way that react
+
+recognizes that the state object is different.
+
+Now you might be wondering, well, Yehuda, the object is different.
+
+It used to say name equals equal.
+
+Now it's his name equals Andre.
+
+But for React, it's not leveraging that change in the values in the object as a actual change.
+
+The way that react to text it that there's a change is that uses JavaScript underlying reference by
+
+memory for an object.
+
+What that means is that in memory, whenever we instantiate a variable, let's say const object one,
+
+and let me say that this object is equal to the same object that we have as our state.
+
+So name is equal to EÜ.
+
+This object one is just pointing to this object when it gets instantiated.
+
+So what happens is that under the hood, JavaScript goes, Oh, there's this object I want to create
+
+in memory, which has this shape name equals EÜ And then I'm going to create some variable called object
+
+one, and it's going to point to this object that is just made.
+
+An easy way to see this is if I say Object two is equal to object one.
+
+What's happening here is that JavaScript like, OK, this object one, what's it pointing to?
+
+It's pointing to this object in memory.
+
+So I'm just to make object to a pointer that points to the same object in memory.
+
+And now if I say object to strict equality, which is three equal signs equals two object one, it'll
+
+say that it's true.
+
+Strict equality just says, are these two pointers pointing to the same thing in memory?
+
+Yes, they are.
+
+This is object equality when you do triple equals with objects.
+
+The reason why this is actually not working for react and updating the DOM has to do with this concept.
+
+Let's say we say object one name is equal to Andre.
+
+When I update this object, one now has that new updated value object to also has an updated value.
+
+And this makes sense.
+
+They're both pointing to the same thing in memory.
+
+But again, this object in memory is not different.
+
+It's the same object in memory.
+
+So even though the value has changed, it's still the same thing in memory.
+
+So for React, React actually says the only way I'm going to update a component when I know that the
+
+state is different is if there is a completely different object in memory.
+
+And how does that happen?
+
+Well, let me give you an example, let's say we make another object object three.
+
+And in here we use object dot assign.
+
+Object assign is a method that allows us to create a different object using another object as a template.
+
+So let's say first, what I'm saying is the first argument is a new object, a brand new object.
+
+So this is the first argument.
+
+It's like, what do I want to make or assign a new object from?
+
+The first one is a brand new object right here.
+
+The second one, I want to use object one.
+
+Now, if I look object three, it has the same signature or it has the same shape as object one.
+
+It's still named because Andre.
+
+But now if I do, object one equals against strict equality with object three.
+
+I see that it's false.
+
+And the reason for this is because this object, even though it's the same one as object one when we
+
+change it.
+
+These are two different objects in memory.
+
+An even easier way to do this is if I say Konst Object four is equal to an object with the name Andre.
+
+Here you'll see that I'm typing out a brand new object.
+
+So this is a completely different object.
+
+Even though it looks the exact same as Object one and Object 2's pointing object in memory, even object
+
+three.
+
+They all look the same.
+
+But when we do strict equality with Object four, we see that different.
+
+Object three.
+
+An object for completely different.
+
+Not the same object and memory.
+
+So this is when react will determine that it needs to re render.
+<h2>
+Your component is when state is a completely different object in memory.
+
+The moment it's a different object and memory react will be like, OK, it's time to update this object.</h2>
+
+So let's do that quickly, actually.
+
+How do we do this?
+### setState()
+Well, an easy way that we can do this react actually gives us a method, and it's called **setState**.
+
+Now, setState is an interesting method because there's actually many ways to use it.
+
+But I'm going to show you the very basic, simple way, which is that you give it an object that you want to shallow merge with your current state object.
+
+What's **shallow merge**?
+
+A shallow merge just means that whatever values that you pass to me inside of this object. I am going to update and check through the state object to see if there are the same keys.
+
+If there are the same keys, I'm going to update your state keys with the new value.
+
+Give me.
+
+So here I'm going to say name is equal to Andrei.
+
+So what's going to happen is that when we call this?
+
+React is going to be like, OK, you want to call sets state.
+
+So you want to update the state value, what do you want to do?
+
+You want to take this object and you want to say, Oh, I want to find any name on this object and I
+
+want to update it to the new value.
+
+So now this, I'm just going to say name because Iowa, instead, it's going to update to name equals
+
+Andre.
+
+So now if we go back, we clear we had changed name.
+
+We see that it's updated.
+
+And the reason for this, again, is because what sets state does under the hood is that it's actually
+
+updating state to a different object and react once it detects, Oh, state is now a different object
+
+in memory.
+
+Let me re render this component and in turn, update the applications UI.
+
+So now that we understand a bit more offset state as well as object and reference, which is how React
+
+determines when a component updates, let's go more in-depth into setState(), which I will do in the
+
+next video.
+
+So I'll see you there.
+
+<div class="end-of-section">
+    <br />
+    <br />
+    <br />
+    <p>---------------------------------------------------------------------------------------------------------------------------</p>
+    <br />
+    <br />
+    <br />
+</div>
 
 ## 29. Monsters Rolodex - States and Shallow Merge
 
