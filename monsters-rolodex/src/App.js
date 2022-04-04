@@ -9,7 +9,7 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      filteredMonsters: [],
+      searchField: "",
     };
     console.log("constructor 1");
   }
@@ -33,23 +33,25 @@ class App extends Component {
 
   render() {
     console.log("render 2");
+
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(this.state.searchField);
+    });
+
     return (
       <div className="App">
         <input
           type="search"
           placeholder="search monsters"
           onChange={(event) => {
-            const searchString = event.target.value.toLocaleLowerCase();
-            // [ { name: 'Leanne'}, {name: 'Yihua'}]
-            const filteredMonsters = this.state.monsters.filter((monster) => {
-              return monster.name.toLowerCase().includes(searchString);
-            });
+            const searchField = event.target.value.toLocaleLowerCase();
+
             this.setState(() => {
-              return { filteredMonsters: filteredMonsters };
+              return { searchField };
             });
           }}
         />
-        {this.state.filteredMonsters.map((monster) => {
+        {filteredMonsters.map((monster) => {
           return <h1 key={monster.id}>{monster.name}</h1>;
         })}
       </div>
