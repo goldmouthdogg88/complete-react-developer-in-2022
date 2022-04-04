@@ -1764,6 +1764,310 @@ So that's what we're going to cover in the next video, and I'll see you there.
 
 ## 35. Monsters Rolodex - Lifecycle Method: componentDidMount
 
+Welcome back, everyone.
+
+So here is the website that we want to use in order to get our list of users.
+
+The website will display all of this as JSON, which is pretty much just objects of users with certain
+
+attributes on them.
+
+So there's an idea, there's a name, there's a username, there's email, there's address, and then
+
+there's some other extra information.
+
+Well, we really care about for now is just that.
+
+There's a name and there's an ID.
+
+We need the name to display and we need the I.D. because it is the key I fully remember.
+
+So what we're going to do is we are going to make a request to this website, which will give us back
+
+this array of JSON objects so very easy.
+
+If you want this, it's actually going to be in your Reasons folder, so it's very easy to access.
+
+And what I want you to do is I want you to copy this and then what we need to do now is figure out how
+
+to bring this array into our React application.
+
+So let's go back to our application and let's think about a couple of things that we need to do before
+
+we even start coding it.
+
+First off, what we need to do is think about where we're going to leverage the actual array once we
+
+get it inside component.
+
+We've actually already thought about this with our monsters array.
+
+So what we want to do is we want to update the state of monsters to the array of users.
+
+Once we get them from the API, here we have some hardcoded values.
+
+But in reality, I actually don't want that because when you think about it, why would I want to use
+
+any hardcoded values at all?
+
+I just want to use what values come from the API.
+
+My application should not have to worry about what that data looks like or not what it looks like,
+
+but whether or not I get how much data, that's not something our application should be largely concerned
+
+with.
+
+Of course, there are certain things like there are edge cases where if it's empty, do you want to
+
+display some kind of message that tells the user that there are no users that have been fetched?
+
+Perhaps.
+
+But that's not what I'm talking about here.
+
+I'm talking about the initial state of this monster's array.
+
+If you think about it, if you have an application that makes a request for a bunch of users, if you,
+
+let's say, fail in the middle of that API request, let's say your network cuts off or there some corrupted
+
+data or something that is not related to our application.
+
+What would you want to do?
+
+What would it matter for a user to see?
+
+The user should not see anything that they should just see the fact that there is an empty array, meaning
+
+that nothing should display them because nothing was properly fetched.
+
+That is the typical behavior of most applications.
+
+So in this case with our states, we want to think about what's known as the empty case or the null
+
+case.
+
+So what happens when you have an initialized state or when you have a state that has nothing in it?
+
+So I'm told about these state variables.
+
+Of course, a monster's here is a list of users.
+
+So what's an empty version of that?
+
+Well, it's an empty list or an empty array.
+
+So we want to initialize these values as empty.
+
+Once this is empty, now, what I want to do is I want to actually get that list of users.
+
+And the way I'm going to do that is I need to think, when do I get the list?
+
+How do I get the list?
+
+Where do I put the list?
+
+We already talked about where it's going to be in our state.
+
+But how do I get the lists?
+
+This is actually where React is going to give us these things known as lifecycle methods.
+
+So when you think about a component, I've always mentioned that a components key thing and react is
+
+just figuring out when it renders and when it re-enters.
+
+So if our monster's array is empty, when we get the new list of array from our API, we want to update
+
+the state object and therefore we want to re render this component.
+
+But when do we want to get that information we want to get at the moment the app is actually mounted
+
+or the moment it's rendered by React because we want to display the users as soon as possible in order
+
+to do that.
+
+We leverage lifecycle methods on this component class that reactor's given us, and these different
+
+methods are listed here, you'll see in my dropdown.
+
+There's a bunch of them, but the most important one is really component did Mount and component did
+
+update and probably also come on at will on Mount, but we'll talk about these a little later.
+
+We'll focus on component did Mount.
+
+So component amount is a method that you have access to and inside, you want to write your coat and
+
+whatever you right here will get run whenever the component mounts.
+
+Mounting is the first time a component gets placed onto the top.
+
+So the first time React renders a component onto the page that is mounting.
+
+It only happens once through a components life.
+
+The only time when a component might reach mount is if it's been on Mount it, meaning it's been completely
+
+removed from the dome, and you could almost argue that it's a different component.
+
+It might be the same app component or the same component we're using, but it's a new instance of it.
+
+So we'll talk more about that as well as we start building out a more complex application.
+
+But for now, just understand that the moment your component gets placed onto the DOM is when you want
+
+to make an API request for something like users, because that's when you want to get that information
+
+so we can display it as soon as possible.
+
+So remember, if you need to make an API request so that your component can have the appropriate data
+
+it needs in order to render the appropriate things.
+
+That's when you want to put it in component that mount.
+
+So instead of component that mounts.
+
+How do we actually fetch from that API?
+
+Well, we're going to use the native fetch and native fetch.
+
+What we do is we give it the URL that we need in order to get that JSON.
+
+So here I'm going to paste that in again.
+
+You'll find that in your resources folder.
+
+Once we fetch this, this is going to be a promise, and a promise is something that is asynchronous
+
+in JavaScript.
+
+It's essentially a promise that eventually I'm going to have a value.
+
+We can talk more about promises in a video in the appendix, where if you're not really familiar with
+
+it, it's a good time to watch that after this video so that you can get a deeper understanding.
+
+But all you need to know is that what's going to happen is JavaScript is going to fetch what data it
+
+can from here.
+
+If it succeeds, it's going to come back and then we can call then on that value, meaning that now
+
+we have a response back from that API request and this we want to pass a callback where the argument
+
+is the response itself.
+
+So the response that they give us.
+
+Let's take a quick look at it.
+
+So I want you to see what we're going to get.
+
+We're going to go to our application.
+
+We're going to open up our console.
+
+And again, it's empty because you remember I took out all the monsters, so there's nothing in our
+
+natural state.
+
+But here we got a response back and inside you see, it's just this object and it has a lot of stuff
+
+in it.
+
+There's headers and there's like the status of whether or not it was successful, which it was.
+
+There's the URL in which we fetched it from.
+
+But primarily what we want is we want this in JSON format.
+
+So what we're going to say is that, OK, I want you to return from this dot then.
+
+This response, Dodgson, some converting this over into Jason, and this is what is being returned
+
+from the start that.
+
+Every day then that returns, a value is going to return another promise that has been resolved.
+
+So here I can actually say then again.
+
+And what I have now is the users.
+
+And let's just quickly console.log this as well.
+
+So remember, whatever got returned from response that Jason is going to get passed to this users as
+
+the argument of our call back.
+
+So if I save this, I come here.
+
+There we see it.
+
+If I just refresh just so you're familiar.
+
+You'll see that this is the array of the users that we got from Jason Placeholder.
+
+It's exactly what we're expecting.
+
+So now that we have this, let's actually get this in our state, which we can do using said state as
+
+we've done before.
+
+So let's get rid of this console.log.
+
+And instead, what we're going to say is this starts at state and here you can either pass at the object
+
+where monsters points to users or you can use the function method.
+
+So I'm going to use the function method and I'm going to return back an object where monsters now points
+
+to users.
+
+And the reason why I want to use this function method is just so that I can also pass it.
+
+The callback when this set state is finished, just so that I can make sure that my state has the correct
+
+value.
+
+So now, if we go back to our code, what we see is that we do indeed have all of our users in here.
+
+Let me refresh.
+
+And we also see that we are logging out our new state with the appropriate monsters, with the appropriate
+
+values.
+
+So everything here is working.
+
+And the key thing I want you to focus on and what we learned was that whenever we have a component,
+
+a class component specifically, that needs to leverage some kind of API call in order to get data that
+
+it needs in order to display the appropriate UI, you want to put that inside of your component.
+
+Did Mount lifecycle method.
+
+Now there are definitely more lifecycle methods that will cover in later lessons.
+
+For now, though, I just want you to focus on component at Mount and mounting of the component in the
+
+next video.
+
+I'm going to go a little deeper into these three methods that we've seen, which is the constructor
+
+component and mount and the render method because there is an order here that is important when it comes
+
+to how this component is getting added and react, determining when to run the code inside each of these.
+
+So in the next video, we'll cover that so that you can understand deeper how a class component works.
+
+See in the next video.
+
+
+
 ## 36. Optional: Promises
 
 ## 37. Monsters Rolodex - Renders & Re-renders in React
