@@ -2242,6 +2242,325 @@ in the next video.
 
 ## 38. Monsters Rolodex - Input Search Box Component
 
+Welcome back, everyone.
+
+Just so that we can keep track of all these things we're learning when it comes to our lifecycle methods
+
+and our class component methods, as well as rendering and rendering.
+
+I know it's a lot of new concepts that we're learning at once, which can be confusing.
+
+So just so that we're aware of the order, as I mentioned before, its can structure, then render then
+
+component did mount and have component did mount updates the state another render?
+
+We're just going to update this console.log text so that it shows us the method so that as we build
+
+out this application, we can see very clearly what's happening, and it's really just for your own
+
+familiarity in case you get confused.
+
+So instead of console.log one, we put constructor instead of console.log.
+
+Three, we put component at Mount and instead of console.log.
+
+Two we put render.
+
+So now that we have this, we go back to our application.
+
+We see that when we refresh.
+
+We'll see that our constructor runs than our render runs component, didn't mount runs, then render
+
+runs and then of course, our monsters array gets logged from our callback in our sets, they call.
+
+So everything here is just to recap now moving forward.
+
+Let's talk about how we're actually going to build out this application, and in order to do that,
+
+we've got to talk a little bit about what we're looking to do.
+
+So as I mentioned before, we have these different ones that represent different monsters.
+
+Now, before we actually start styling these h ones to look more like the final product, what we want
+
+to do instead is actually work on functionality.
+
+You always want to work on functionality of your application before you work on the CSS, because once
+
+you have the functionality and it's easier to start afterwards, at least that's the way that I prefer
+
+to do things.
+
+So in order for us to think about the functionality, let's actually take a look at our final product.
+
+What are we trying to work towards?
+
+So here we have these different monster cards, which represent the different monsters in our H1.
+
+So instead of ones, we have cards.
+
+But as I mentioned, that's the styling.
+
+We're not going to work on that.
+
+Instead, we want to add in this search functionality.
+
+So what does the search functionality do?
+
+Well, let's say that you want to find Clementine Bausch as you type it in.
+
+It will filter out the monsters that do not match in name to what we've typed in here for our strengths.
+
+So seemingly only matches two cards Clementine and Clementina.
+
+In fact, if I type out Clementine, it should get rid of Clementina, but as I remove it, it will
+
+bring back anything that does match.
+
+So this is the functionality that we want to add into our monster's Rolodex project.
+
+Another thing to include is also the fact that if we hit this X, it will also clear the search field
+
+and in turn also bring back all the different monsters that were loaded.
+
+So this is the feature that we want to build in.
+
+Now, before we start coding this right away with any feature we're building, we want to think about
+
+what it is that we need to do, because only then do we get a better clear idea of the requirements
+
+of this feature.
+
+And from there, it's the best way to start moving forward and actually comes the planning out, the
+
+code that we want to write.
+
+So what we need and what we're missing is we need an input field, and with this input field, we need
+
+to be able to insert text, so allow the user to type into it and filter out our monsters.
+
+So let's just think about that.
+
+Given what we have, we clearly don't have the input field, so we know we need an input field somewhere.
+
+So let's start with that.
+
+Inside of this app, I'm going to use an input field, and this is just the same input field that you
+
+have inside of HTML.
+
+But one thing I want to mention is that all of these different HTML like GSX tags that we're writing,
+
+the divs, the ones, the inputs or any single HTML tag that you can typically write inside of Iraq
+
+in this GSX.
+
+It looks like HTML.
+
+But it's a little bit more advanced in that what it is really is that it's pretty much a component that
+
+React has already included into the jazz acts.
+
+So just like the components that we're writing, all of these are also components.
+
+An easy way to think about this is that when you look at this app, this class app we know is a class
+
+component.
+
+We've been writing it and we export this out.
+
+But when you look inside of index tags, what's happening is we are importing this app from Dot app,
+
+so we're importing this whole class component that we're writing.
+
+And what we're doing is we are rendering it right here.
+
+But if you look at this, do you notice that this looks like HMO?
+
+Well, this does.
+
+But again, we're still inside of GSX, and the important thing to notice here is that what is happening
+
+is that this app is being written in GSX like an HTML tag, the exact same way that these divs and this
+
+one and these inputs are as well.
+
+And the reason for this, of course, is the fact that React has created these HTML looking components
+
+for us.
+
+For every HTML tag, there is an equal React component.
+
+And the reason why React does this is because it allows us to bind once again functionality to the UI.
+
+So if you think about this input, what do we want to do with this input?
+
+Because with all of these inputs, we typically have a bunch of HTML properties we can provide it.
+
+In fact, any small property you can think of is equally available on these React HTML components.
+
+One thing, though, that I want you to notice is that some of them are named a little differently.
+
+And we can see this explicitly up here in this div.
+
+We notice that instead of class, it's class name.
+
+And the reason why its class name instead of class is because this is written in Joe's X and J X is
+
+a syntax extension of JavaScript, meaning that all of the rules of JavaScript apply to GSX because
+
+you're really just writing JavaScript with some additional functionality and class.
+
+Being a protected keyword in JavaScript means that classes also protect protected keyword inside of
+
+GSX.
+
+When you think about classes, we use it up here, and what it does is it allows us in JavaScript to
+
+create classes as well as class components.
+
+So for this reason, riot cannot just allow us to use class freely inside of our JavaScript because
+
+there's a very key functionality of JavaScript that's tied to class whenever it appears inside of JavaScript
+
+and equally inside of GSX.
+
+So keeping that in mind, that's why its class name.
+
+So if we wanted to give our input a class, then we have to use class name.
+
+And that's exactly how I'm going to do.
+
+So here I'm going to say the class name is equal to search box.
+
+And what other input properties do we want?
+
+Well, we want to give it a type, so we want to say that the type of this input is going to be search.
+
+We also want a placeholder.
+
+So placeholder is going to be the text that shows up inside of an empty search box.
+
+So before the user types in anything, what do we want to put there?
+
+Usually what this text, you want to put some kind of text that explains what it's going to do.
+
+So I'm just going to say that it's going to be search monsters and that text search monsters is going
+
+to show up in that empty input box when users haven't typed in anything yet.
+
+Finally, now what we want to do is we want to actually code in the functionality in order to filter
+
+down this list.
+
+So how do we do this?
+
+Well, typically with inputs, what happens is that you have a change handler that you can bind to an
+
+input.
+
+So this is an event handler very similar to our button.
+
+If you think back to our button, you remember that earlier we had a button that would change the name
+
+inside of our search field, from Yehovah to Andre, and we used the on click handler.
+
+So here instead, we have a similar handler, but every time the value inside of the search box updates
+
+or changes.
+
+And this is the on change handler.
+
+And just like with on click, you get to pass it a callback and this callback runs whenever the value
+
+inside of this input changes.
+
+So what we want to do is we just want to say, OK, what's going to happen every time it changes?
+
+Well, we want to start filtering out the different monsters that we have available.
+
+And luckily for us, just like with this event handler inside of regular HTML JavaScript with Jeff Sachs,
+
+this is pretty much the same event handler.
+
+So what we're going to get back is we are going to get back an event.
+
+So for those of you unfamiliar, let's just quickly console.log this event.
+
+So we see what we receive.
+
+So coming back into our application, we see that we have our input field.
+
+We see we have our placeholder text search monsters.
+
+And now if we start typing in, if I type L, we see we get this synthetic base event.
+
+This event, if you look closely at one of these properties, has an underscore react name.
+
+So this tells us it's a reactive it because React is in here.
+
+In typical any other events that are generated by your browser or your DOM, you would not see underscore
+
+react name.
+
+And the reason for this is because React is generating these events for us with these different methods
+
+that it provides us in those JavaScript HTML components.
+
+The reason for that is just that it makes it easier for us to do this kind of event handling like this
+
+on change handler.
+
+And the reason why there's an underscore is because these are typically the kinds of properties that
+
+react as these events, but they're not for us to access.
+
+We shouldn't be accessing anything with an underscore.
+
+Generally, everything else, though we do want.
+
+And the main thing that we want is target, because inside of Target, other than all of these other
+
+keys and values that you could use, these are going to be mainly valuable because of this value instead
+
+of value.
+
+Here you see, is the string L, which is what we have typed.
+
+Now, if I continue to type.
+
+E!
+
+In the next event, if I check in the target, what we see is that the value is Ali.
+
+And similarly, if I type another A, we see that we're going to get inside of target and value LGA.
+
+So we know that with this, we're now able to actually get the value.
+
+Now this is going to be my challenge to you.
+
+Knowing that we need to use the event, don't target dot value.
+
+I want you to take this and actually try and filter down this list of monsters.
+
+We've done something very similar already.
+
+We know that we need to use this handler to update our state object or our state array for monsters.
+
+What you have to do is figure out how to use this in order to filter it down and to give you a hint,
+
+there's actually an array method called filter that you can leverage for this.
+
+I'm going to include in the resources folder a link to the filter so that you can take a look at it.
+
+But I want you to try and implement it yourself.
+
+Implement a way where as you type, you will filter out these monsters.
+
+So good luck and we'll do it together in the next video.
+
+
 ## 39. Monsters Rolodex - Searching & Filtering
 
 ## 40. Optional: filter(), includes()
