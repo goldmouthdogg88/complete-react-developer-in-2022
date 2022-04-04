@@ -38,16 +38,14 @@ class App extends Component {
           type="search"
           placeholder="search monsters"
           onChange={(event) => {
-            // console.log(event.target.value);
-            let userInput, monsters, monsterNames, filterResults;
-            userInput = event.target.value;
-            monsters = this.state["monsters"];
-
-            monsterNames = monsters.map((x) => x.name);
-            filterResults = monsterNames.filter((names) =>
-              names.includes(userInput)
-            );
-            console.log(filterResults);
+            const searchString = event.target.value.toLocaleLowerCase();
+            // [ { name: 'Leanne'}, {name: 'Yihua'}]
+            const filteredMonsters = this.state.monsters.filter((monster) => {
+              return monster.name.toLowerCase().includes(searchString);
+            });
+            this.setState(() => {
+              return { monsters: filteredMonsters };
+            });
           }}
         />
         {this.state.monsters.map((monster) => {
