@@ -1395,6 +1395,157 @@ I'll see you there.
 ::NO VIDEO::
 ## 33. Monsters Rolodex - Keys for Mapping
 
+Welcome back, everyone, in this video, we're going to break down this warning, which says that each
+
+child in a list should have a unique key property.
+
+What does this mean?
+
+A key property is just a property on the actual.
+
+You can see it as a template or you can see it as the element HTML that we're returning from our map.
+
+In this particular case, it's the one rack just saying, Hey, I want you to give me a key property,
+
+which is some unique string value, or it could be an integer.
+
+It doesn't matter.
+
+React is going to turn into a string either way.
+
+So here, if we know that, let's say, for example, our names are currently unique, then we could
+
+pass it a name value.
+
+This will work in our current context, but you can imagine that there might be a case where if we had
+
+a thousand people, one of these names might overlap, we might have two different monsters named Frank.
+
+If that's the case, well, then this is no longer unique.
+
+So what we need to do is actually use a unique value, and most of the time a unique value is going
+
+to be an ID.
+
+So when most projects in most APIs and almost everything where you're getting some kind of data, they'll
+
+have an ID value, which is some kind of string that's like very complicated.
+
+And usually it's extremely complicated in a way that no two of these strings is identical, making them
+
+completely unique.
+
+And this is what we're going to use inside of our key value.
+
+So instead of monserrat name, we're going to say monstered ID.
+
+So you might be wondering, well, you are.
+
+Why do we need this key value?
+
+This again goes back to react and re rendering.
+
+This key value is actually something that REAC uses in order to make it more optimized when it comes
+
+to updating and re rendering components on your page.
+
+On this page, we now have one app component, yes, but we have four different ones that React has
+
+rendered onto the page for us if we inspect.
+
+What we see is that inside of our app, which is the div, which is our component, we have these four
+
+ones.
+
+But React won't actually update this dom directly, as we've seen before, when we, let's say, add
+
+more to our components.
+
+In this particular case, how does react actually differentiate Linda from Frank, from Jackie, from
+
+Andre, these different ones?
+
+The only way it can do it is by using the key value.
+
+And why is that important?
+
+You might be asking.
+
+Well, let's say, for example, what we did is we updated the name of Jackie to something else like
+
+Yehuda, for example.
+
+When react, does that, does that mean that reaction now re render every single one in this entire
+
+list?
+
+Or should it just re render Jackie so that now it says Iowa?
+
+In order for Iraq to do that, it needs to be able to properly differentiate these different components
+
+from each other because as I mentioned, these components are all using the same template.
+
+So how does react actually differentiate them and know that when Jackie got updated to what only Jackie
+
+needs to be up to date?
+
+Well, it uses that key value, that unique key value that associates that component to that bit of
+
+data.
+
+That is the purpose of the key.
+
+So we'll talk more about this when we start building a more verbose website.
+
+But for now, that's why whenever you use Dot Map and you map out a list of HDMI html elements, you
+
+want to make sure that the top level the very highest one.
+
+So let's say if this one.
+
+Actually, let's make this a div.
+
+And inside of this div, we have an H1.
+
+We want to make sure that at the highest level of this element, which is the death that we add this
+
+key.
+
+And I we go back.
+
+We'll see that each of these are divs with the ones you might be wondering, well, I added the key,
+
+but is it not showing up inside of the elements?
+
+Well, this is actually something unique for React.
+
+React is going to be the only thing that needs that key value.
+
+The regular HTML when it actually gets you built doesn't need the keyboard, so ract takes it off.
+
+But it knows under the hood it's keeping track of this key.
+
+And using this key again is able to be much more performant and efficient when it comes to differentiating
+
+these components from each other and then figuring out which ones to render appropriately when their
+
+values update.
+
+That's the whole point of the key.
+
+So now that we understand this key, let's now move our application towards something that's much more
+
+typical of what we would expect instead of hard coding this array of monsters.
+
+Let's fetch it from an API somewhere in the next video before we talk about that.
+
+I'm going to talk about some of the higher concept of why that's important when it comes to react and
+
+single page applications.
+
+So I'll see you in the next video.
+
+
 
 
 
