@@ -24,7 +24,7 @@ class App extends Component {
             return { monsters: users };
           },
           () => {
-            console.log(this.state);
+            // console.log(this.state);
           }
         )
       );
@@ -38,7 +38,16 @@ class App extends Component {
           type="search"
           placeholder="search monsters"
           onChange={(event) => {
-            console.log(event.target.value);
+            // console.log(event.target.value);
+            let userInput, monsters, monsterNames, filterResults;
+            userInput = event.target.value;
+            monsters = this.state["monsters"];
+
+            monsterNames = monsters.map((x) => x.name);
+            filterResults = monsterNames.filter((names) =>
+              names.includes(userInput)
+            );
+            console.log(filterResults);
           }}
         />
         {this.state.monsters.map((monster) => {
