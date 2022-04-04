@@ -1135,6 +1135,262 @@ So in the next video, let's start building out our application.
 
 ## 31. Monsters Rolodex - Mapping Arrays to Elements
 
+Welcome back, everyone.
+
+So let's start actually building our monster's Rolodex project so that it looks much more similar to
+
+the application we're expecting it to be to begin with.
+
+What I want you to think about what this app component that we have here.
+
+This class component, let's get rid of everything inside, except for the div.
+
+Right now, this app component is pretty much the only component in the entire application, and it
+
+means that it represents the entire application as well.
+
+What I want you to think about is that when you look inside of index stocks, I want you to ignore everything
+
+except for this part right here.
+
+React Dom Dot render.
+
+What it's saying is that react, I want you to render whatever's given to you as the first argument
+
+at the point where you go on to the document and you find some element with root.
+
+I explained to you earlier that when you look inside of the indexed HTML file that got generated for
+
+us, we had this div with the idea of root.
+
+And what react does is it says, OK, instead of this div, I want you to render the entire application
+
+and the way it does that is it takes this argument, which is really just the app as far as we're concerned.
+
+This app is this component, whatever this component renders, is whatever react Dom is going to render
+
+in this place.
+
+So here this component is actually going to contain our entire application.
+
+All of the turmoil here that we're going to return is going to be all of the matter of our application.
+
+And these are going to be broken up into smaller and smaller components and we'll talk about how that's
+
+done.
+
+But what you need to understand really is that this app component represents the entire application.
+
+It's a pretty common best practice to do so where you have one app component and this app component
+
+is what you use to render as the entirety of your application.
+
+So now that we understand that the app is going to be the actual application, let's start actually
+
+building it out and understanding what it is that we're trying to do so with monsters Rolodex.
+
+It is a Rolodex, which is a tool that shows you a bunch of different user profiles.
+
+In our particular case, these users are monsters.
+
+Now, let's say we wanted to show three monsters, how do we go about doing that, doing what we know?
+
+Well, to begin with inside of state, maybe we have three different monsters.
+
+We have monster one, which is going to be a monster with the name of Linda.
+
+We have Monster two, which is going to be a similar object with the name of Frank.
+
+And then we have Monster three.
+
+Which has the name of Jackie.
+
+Here inside of our div, we want to render these three monsters somehow.
+
+And for now, just to keep it simple, let's say we render these monsters names as ones.
+
+So what we can do is we can say each one.
+
+And then using curly braces monster one dot name or sorry, this dot state dot monster one.
+
+Dot net.
+
+And then similarly, we would just copy this three times, and now we use Monster two and Monster three.
+
+Now if we save this and we go to obligation, we see that we have it updated.
+
+Linda, Frank and Jackie are showing.
+
+So our code is working.
+
+But let's go back to this code here.
+
+This is actually pretty repetitive.
+
+If we had 100 monsters or a thousand monsters, if we imagine a really big Rolodex, then we have to
+
+copy and paste this a thousand times.
+
+That seems extremely inefficient, doesn't it?
+
+What if instead, we know that all of these different things are going to be the same?
+
+All these different monsters are going to be displayed using just an H1.
+
+Can we instead just use this as a template, especially if every single one of these monsters is the
+
+same shape of data?
+
+The object is just an object that has a name of Jackie or a name of Frank or name of Linda, or a name
+
+of whatever.
+
+We know that we can expect that this object is going to have a name property that's going to be a string.
+
+So we just don't want to put that string inside of an H1.
+
+Can we just reuse the same HTML template?
+
+Well, actually, we can, and this is what we're going to do to make this way easier for us.
+
+So what I'm going to do is that instead of each of these individual monsters having their own key on
+
+the state, I'm going to make a new key called monsters.
+
+And it's going to contain an array.
+
+Inside of this array is going to be my three monsters.
+
+So I'm just going to copy this over and get rid of the keys because it needs to actually look like an
+
+array.
+
+So now I have a monster's key with an array of our monsters, as we had before, and now instead, what
+
+I'm going to do is I just want to use this H1 template.
+
+But how do I access this array and convert it into those h1s?
+
+Well, here I'm going to use the array method map.
+
+So inside of our HMO, we're going to once again now call squiggly braces because I mentioned before
+
+that we want to access JavaScript.
+
+So I want to say this starts state dot monsters, which gives me the array and I want to use the dot
+
+map method.
+
+The Dot Map method is a method that allows you to iterate over every single element from left to right
+
+inside of your array, and it gives you back a new array.
+
+But why is this useful, because what we really want is an array of HTML elements with the shape that
+
+we expect the HTML to render.
+
+So in our particular case, we want to return a bunch of ones where the text inside is the name of the
+
+monster.
+
+So right now I have an array of JSON objects.
+
+I don't have an array of the JSON amount.
+
+So how do I do that?
+
+I use Stop Map Dot Map.
+
+The way it works is you pass it a callback function.
+
+This callback function, the first argument that it gets, is the actual element.
+
+So in this case, it's a monster.
+
+We know it's a monster.
+
+What react does, or rather what JavaScript does with that map because Map is a JavaScript method on
+
+a race is that it takes the callback function that you pass to it and it invokes it on every single
+
+element inside of the array, from top to bottom or left to right in this particular case.
+
+So we know that when we invoke this callback on this element, this one first element, first inside
+
+of our array, this monster is going to be the element itself.
+
+It's going to give us that JSON object where the name is, Linda.
+
+And here what we want to do is we want to return back the H one, as I mentioned where I'm calling.
+
+So once again, we need the curly braces because we're inside of each animal.
+
+I want monster name.
+
+Here, what's going to happen.
+
+As I mentioned, is that React is going to look at your code and say, Oh, inside of here, there is
+
+some curly braces.
+
+You want to access this dot state dot monsters, which is an array and you want to map over it.
+
+What you want to do in that map is you want to give me this callback function where I'm going to take
+
+the elements that you're trying to iterate through.
+
+So each of these different monsters and I'm going to give you access to it inside of the callback.
+
+And what we want to do is want to say, OK, what's that monster or what that element?
+
+I want you to return me in that place and one where the inside is using monster dot name.
+
+So this particular monster, I'm going to put Linda in there.
+
+And then the next one, when I iterate on the second element, it's going to use Frank.
+
+And then in the third element, it's going to use Jackie.
+
+And here, when we look at our code, we see that it still works.
+
+In fact, to prove that it's still working, I'm just going to add a fourth one and this monster is
+
+going to be Andre if I save and I go, there it is so, so easy now.
+
+The inside of this array, all we need to do is just make sure that we have an array where every object
+
+has the same signature or the same shape.
+
+And now inside of our code, our dot map function is always going to now just generate a new one every
+
+time a new monster is added inside, or it's at least going to do it for every single monster inside
+
+of our array.
+
+And this is extremely powerful because by doing this now, this one block of code right here now encapsulates
+
+the entire UI rendering of all of the different monsters that we want to show.
+
+And this is an extremely powerful thing about React.
+
+Now, if you're unfamiliar with that map, we're going to include a video in our appendix where I'm
+
+is going to go into more depth about Map if you're uncomfortable with it.
+
+But if you are and you already understand how a map works, then let's move on to the next lesson and
+
+the next lesson.
+
+We're going to talk about something that some of you might have seen.
+
+If you have your developer console open, you'll see that there's this warning where each child in a
+
+list should have a key property.
+
+And we're going to go into exactly what that means in the next video.
+
+I'll see you there.
+
 ## 32. Optional: Map() + key attribute
 
 ## 33. Monsters Rolodex - Keys for Mapping
