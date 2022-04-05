@@ -1,5 +1,3 @@
-// Just a small change
-
 import { Component } from "react";
 
 // import logo from "./logo.svg";
@@ -33,11 +31,19 @@ class App extends Component {
       );
   }
 
+  onsearchChange = (event) => {
+    const searchField = event.target.value.toLocaleLowerCase();
+
+    this.setState(() => {
+      return { searchField };
+    });
+  };
   render() {
     console.log("render 2");
-
-    const filteredMonsters = this.state.monsters.filter((monster) => {
-      return monster.name.toLowerCase().includes(this.state.searchField);
+    const { monsters, searchField } = this.state;
+    const { onsearchChange } = this;
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(searchField);
     });
 
     return (
@@ -45,13 +51,7 @@ class App extends Component {
         <input
           type="search"
           placeholder="search monsters"
-          onChange={(event) => {
-            const searchField = event.target.value.toLocaleLowerCase();
-
-            this.setState(() => {
-              return { searchField };
-            });
-          }}
+          onChange={onsearchChange}
         />
         {filteredMonsters.map((monster) => {
           return <h1 key={monster.id}>{monster.name}</h1>;
