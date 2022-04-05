@@ -2,7 +2,7 @@ import { Component } from "react";
 
 class CardList extends Component {
   render() {
-    console.log("render");
+    console.log("render from CardList");
 
     // console.log(this.props);
 
@@ -12,6 +12,8 @@ class CardList extends Component {
     // its just easier.
 
     const { monsters } = this.props;
+
+    // Components will re-render when props changes
 
     return monsters.map((monster) => {
       return <h1 key={monster.id}>{monster.name}</h1>;

@@ -36,7 +36,18 @@ class App extends Component {
     });
   };
   render() {
-    // console.log("render 2");
+    /* (Components re-render on two conditions)
+
+    1. When setState() gets called
+    2. When props are updated
+
+    This is how react primarily determines, that you
+    want to re-render. 
+
+
+    */
+
+    // console.log('render from AppJS');
 
     // destructuring
     const { monsters, searchField } = this.state;
