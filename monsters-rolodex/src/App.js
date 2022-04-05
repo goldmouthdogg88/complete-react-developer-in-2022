@@ -1,5 +1,6 @@
 // I'm trying to add the folders
 import { Component } from "react";
+import CardList from "./components/card-list/card-list.component";
 
 // import logo from "./logo.svg";
 import "./App.css";
@@ -54,9 +55,10 @@ class App extends Component {
           placeholder="search monsters"
           onChange={onsearchChange}
         />
-        {filteredMonsters.map((monster) => {
+        {/*filteredMonsters.map((monster) => {
           return <h1 key={monster.id}>{monster.name}</h1>;
-        })}
+        })*/}
+        <CardList />
       </div>
     );
   }
