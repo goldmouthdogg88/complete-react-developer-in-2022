@@ -13,23 +13,18 @@ class App extends Component {
       monsters: [],
       searchField: "",
     };
-    console.log("constructor 1");
+    // console.log("constructor 1");
   }
 
   // Lifecycle Methods
   componentDidMount() {
-    console.log("componentDidMount 3");
+    // console.log("componentDidMount 3");
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) =>
-        this.setState(
-          () => {
-            return { monsters: users };
-          },
-          () => {
-            // console.log(this.state);
-          }
-        )
+        this.setState(() => {
+          return { monsters: users };
+        })
       );
   }
 
@@ -41,7 +36,9 @@ class App extends Component {
     });
   };
   render() {
-    console.log("render 2");
+    // console.log("render 2");
+
+    // destructuring
     const { monsters, searchField } = this.state;
     const { onsearchChange } = this;
     const filteredMonsters = monsters.filter((monster) => {
@@ -58,7 +55,7 @@ class App extends Component {
         {/*filteredMonsters.map((monster) => {
           return <h1 key={monster.id}>{monster.name}</h1>;
         })*/}
-        <CardList />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
