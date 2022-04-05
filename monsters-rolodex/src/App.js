@@ -1,7 +1,8 @@
-// I'm trying to add the folders
+import { useState } from "react";
+
 // import { Component } from "react";
 // import CardList from "./components/card-list/card-list.component";
-// import SearchBox from "./components/search-box/search-box.component";
+import SearchBox from "./components/search-box/search-box.component";
 
 // import logo from "./logo.svg";
 import "./App.css";
@@ -25,16 +26,35 @@ import "./App.css";
 
 */
 
+/*
+  useState: gives us the ability to encapsulate local state in a functional component
+
+  array destructuring allows us to assign variables values inside of an array.
+  useState gives us back an array of two values. The first value is the value we want to store
+  and the second value is a setter function.
+
+  If you have multiple values in a state, then you need multiple useState calls, each
+  hook only hooks into one value.
+
+ */
 const App = () => {
+  const [searchField, setSearchField] = useState(""); // [value, setValue]
+  console.log(searchField);
+
+  const onsearchChange = (event) => {
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setSearchField(searchFieldString);
+  };
+
   return (
     <div className="App">
       <h1 className="app-title">Monsters Rolodex</h1>
-      {/* <SearchBox
+      <SearchBox
         className="monsters-search-box"
         onChangeHandler={onsearchChange}
         placeholder="search monsters"
       />
-      {<CardList monsters={filteredMonsters} />} */}
+      {/* {<CardList monsters={filteredMonsters} />} */}
     </div>
   );
 };
