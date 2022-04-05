@@ -54,7 +54,7 @@ import "./App.css";
 const App = () => {
   const [searchField, setSearchField] = useState(""); // [value, setValue]
   const [monsters, setMonsters] = useState([]);
-
+  const [filteredMonsters, setFilterMonsters] = useState(monsters);
   console.log("render");
 
   /*
@@ -70,7 +70,7 @@ const App = () => {
     What this array says "Whenever any of the values inside of this dependency array change is when I'm going
     to run this function, this callback function."
 
-    If we only want to call the useEffect callback once we pass it an empty array. Which is on mount.
+    & If we only want to call the useEffect callback once we pass it an empty array. Which is on mount.
 
   */
   useEffect(() => {
@@ -79,14 +79,22 @@ const App = () => {
       .then((users) => setMonsters(users));
   }, []);
 
+  useEffect(() => {
+    const newFilteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
+    });
+
+    setFilterMonsters(newFilteredMonsters);
+
+    console.log("effect is firing");
+  }, [monsters, searchField]);
+
   const onsearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   };
 
-  const filteredMonsters = monsters.filter((monster) => {
-    return monster.name.toLocaleLowerCase().includes(searchField);
-  });
+  // console.log(filteredMonsters);
 
   return (
     <div className="App">
@@ -96,73 +104,10 @@ const App = () => {
         onChangeHandler={onsearchChange}
         placeholder="search monsters"
       />
+
       {<CardList monsters={filteredMonsters} />}
     </div>
   );
 };
-
-// class App extends Component {
-//   constructor() {
-//     super();
-
-//     this.state = {
-//       monsters: [],
-//       searchField: "",
-//     };
-//     // console.log("constructor 1");
-//   }
-
-//   // Lifecycle Methods
-//   componentDidMount() {
-//     // console.log("componentDidMount 3");
-//     fetch("https://jsonplaceholder.typicode.com/users")
-//       .then((response) => response.json())
-//       .then((users) =>
-//         this.setState(() => {
-//           return { monsters: users };
-//         })
-//       );
-//   }
-
-//   onsearchChange = (event) => {
-//     const searchField = event.target.value.toLocaleLowerCase();
-
-//     this.setState(() => {
-//       return { searchField };
-//     });
-//   };
-//   render() {
-//     /* (Components re-render on two conditions)
-
-//     1. When setState() gets called
-//     2. When props are updated
-
-//     This is how react primarily determines, that you
-//     want to re-render.
-
-//     */
-
-//     // console.log('render from AppJS');
-
-//     // destructuring
-//     const { monsters, searchField } = this.state;
-//     const { onsearchChange } = this;
-//     const filteredMonsters = monsters.filter((monster) => {
-//       return monster.name.toLowerCase().includes(searchField);
-//     });
-
-//     return (
-//       <div className="App">
-//         <h1 className="app-title">Monsters Rolodex</h1>
-//         <SearchBox
-//           className="monsters-search-box"
-//           onChangeHandler={onsearchChange}
-//           placeholder="search monsters"
-//         />
-//         {<CardList monsters={filteredMonsters} />}
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
