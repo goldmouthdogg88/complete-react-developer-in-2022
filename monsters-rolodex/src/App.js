@@ -1,3 +1,4 @@
+// I'm trying to add the folders
 import { Component } from "react";
 
 // import logo from "./logo.svg";
