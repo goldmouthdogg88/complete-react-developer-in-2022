@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // import { Component } from "react";
-// import CardList from "./components/card-list/card-list.component";
+import CardList from "./components/card-list/card-list.component";
 import SearchBox from "./components/search-box/search-box.component";
 
 // import logo from "./logo.svg";
@@ -53,15 +53,40 @@ import "./App.css";
 
 const App = () => {
   const [searchField, setSearchField] = useState(""); // [value, setValue]
-
   const [monsters, setMonsters] = useState([]);
 
-  // console.log(searchField);
+  console.log("render");
+
+  /*
+    The useEffect hook takes two arguments. The first is a callback function, and the second
+    argument is going to be an array of dependencies. 
+
+    callback: is going to be the code or effect that we want to happen in our functional component
+    secondarray: contains dependencies, mostly likely going to be state values i.e. [searchField or monsters]
+    in the context of this application or prop values. Which will be arguments that get passed in as props
+    to our functional component. 
+
+
+    What this array says "Whenever any of the values inside of this dependency array change is when I'm going
+    to run this function, this callback function."
+
+    If we only want to call the useEffect callback once we pass it an empty array. Which is on mount.
+
+  */
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) => setMonsters(users));
+  }, []);
 
   const onsearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
   };
+
+  const filteredMonsters = monsters.filter((monster) => {
+    return monster.name.toLocaleLowerCase().includes(searchField);
+  });
 
   return (
     <div className="App">
@@ -71,6 +96,7 @@ const App = () => {
         onChangeHandler={onsearchChange}
         placeholder="search monsters"
       />
+      {<CardList monsters={filteredMonsters} />}
     </div>
   );
 };
