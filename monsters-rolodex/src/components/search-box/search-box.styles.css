@@ -1,0 +1,14 @@
+.search-box {
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  padding: 10px;
+  width: 150px;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+/*
+    If I wanted to overwrite or add additonal styles for the monsters serach box
+    which is a specific instance, or I'm using the search-box component for a specific
+    purpose
+*/
