@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // import { Component } from "react";
 // import CardList from "./components/card-list/card-list.component";
@@ -20,10 +20,6 @@ import "./App.css";
   What are side-effects? We need to understand pure functions and impure functions
   in order to replicate all the behavior we had in class components, state, setState
   and lifecycle methods.
-
-  
-
-
 */
 
 /*
@@ -37,9 +33,30 @@ import "./App.css";
   hook only hooks into one value.
 
  */
+
+/*
+    To stop the infinite fetching, we have to use side effects, within our functional components.
+    Side effects can be generated from functional components using the useEffect hook. A side effect
+    is some behavior that we trigger from our functions that affects something that outside exists
+    out side the scope of the function. 
+
+    Its either that we modify or rely on some value that exists outside of what's within scope of our
+    functional component. Any fetch call is a side effect.
+  */
+
+/*
+      functional components, anytime it render or re-renders runs the code from top to bottom.
+      if you're stuck in a render loop. Think of all the steps with re-rendering, think about the
+      fact the function runs from top to bottom. Look at the variables in your state. Are they different
+      variables or are they the same variables?
+    */
+
 const App = () => {
   const [searchField, setSearchField] = useState(""); // [value, setValue]
-  console.log(searchField);
+
+  const [monsters, setMonsters] = useState([]);
+
+  // console.log(searchField);
 
   const onsearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
@@ -54,7 +71,6 @@ const App = () => {
         onChangeHandler={onsearchChange}
         placeholder="search monsters"
       />
-      {/* {<CardList monsters={filteredMonsters} />} */}
     </div>
   );
 };
