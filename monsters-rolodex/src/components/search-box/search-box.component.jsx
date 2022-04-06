@@ -1,4 +1,3 @@
-import { Component } from "react";
 import "./search-box.styles.css";
 
 /* 
@@ -26,23 +25,15 @@ import "./search-box.styles.css";
   styles. There is, which involves learning CSS in JS libraries. 
  */
 
-class SearchBox extends Component {
-  render() {
-    // const { search } = this.props;
-    return (
-      <div>
-        <input
-          //   className="search-box"
-          className={`search-box  ${this.props.className}`}
-          type="search"
-          //   placeholder="search monsters"
-          placeholder={this.props.placeholder}
-          onChange={this.props.onChangeHandler}
-          //   onChange={search}
-        />
-      </div>
-    );
-  }
-}
+const SearchBox = ({ className, placeholder, onChangeHandler }) => (
+  <div>
+    <input
+      className={`search-box  ${className}`}
+      type="search"
+      placeholder={placeholder}
+      onChange={onChangeHandler}
+    />
+  </div>
+);
 
 export default SearchBox;
